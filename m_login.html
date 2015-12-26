@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<style>
+	 #title{
+	 	text-align: center;
+	 	font-size: 25px;
+	 	margin-top: 180px;
+	 }
+	 #username , #options{
+	 	background-color: #EFEFEF;
+	 	border: none;
+	 	width: 80%;
+	 	height: 50px;
+	 	margin-top: 50px;
+	 	margin-left: 10%;
+	 	padding: 0 20px;
+	 }
+	 #options{
+	 	display: none;
+	 }
+	 .btn{
+	 	font-size: 22px;
+	 	width: 80%;
+	 	height: 50px;
+	 	margin-left: 10%;
+	 	margin-top: 30px;
+	 	background-color: #03C1FB;
+	 }
+	 input::-webkit-input-placeholder { text-align: center; }
+	</style>
+</head>
+<body>
+	<article class="content col-xs-12 col-md-4 col-md-offset-4" style="height:100%;">
+		<div id="title">输入你的名字</div>
+		<div class=>
+			<input id="username" type="text" placeholder="Your Name">
+			<select id="options" >
+				<option value="1">1000以下</option>
+				<option value="2">1000~3000</option>
+				<option value="3">3000~5000</option>
+				<option value="4">5000~8000</option>
+				<option value="5">8000以上</option>
+			</select>
+		</div>
+		<div class="button"> 
+			<input class="btn btn-info" id="submit" type="button" value="Next">
+
+		</div>
+	</article>
+	
+	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+	<script>
+		$(function(){
+			$("#submit").click(function(e){
+				e.preventDefault();
+				username = $("#username").val() ;
+				if( username ) {
+					registUser(username);
+					if (!exist) {
+						$(this).unbind("click").click(function(){
+							user_select = $("option:selected").val();
+							sendUserData(user_select);
+						});
+						localStorage.vc_username = username;
+						$("#title").html("请选择词汇量");
+						$("#username").hide();
+						$("#options").show();
+					}
+				} else {
+					alert("请输入用户名");
+				}
+			});
+		});
+		function registUser( name ){
+			$.ajax({
+				type: "GET",
+				timeout: 3000,
+				//contentType:"application/json;charset=utf-8",
+				url: "http://172.16.3.6:3000/voc_builder/user_register",
+				asyn: "false",
+				data: { "name": name },
+				//dataType	: "json",
+				success: function (data, textStatus){
+					exist = data.exist;
+					if ( exist ) {
+						window.location = "m_index.html";
+					}
+				},
+				error: function (){
+					console.warn("获取数据失败");
+				}
+			});
+		}
+		function sendUserData(){
+			console.log("send");
+			$.ajax({
+				type: "GET",
+				//timeout: 10000,
+				//contentType:"application/json;charset=utf-8",
+				url: "172.16.3.6:3000/voc_builder/receive_vocabulary_target",
+				data: { "name": localStorage.vc_username },
+				//dataType: "json",
+				success: function (data, textStatus){
+					console.log(data);
+				},
+				error: function (){
+					console.warn("获取数据失败");
+				}
+			});
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<style>
+		#header {
+			background-color: #000;
+			color: #FFF;
+			text-align: center;
+			height: 40px;
+			line-height: 40px;
+			vertical-align: middle;
+			font-size: 22px;
+		}
+		#header > .close-btn {
+			color: #FFF;
+			font-size: 22px;
+			position: absolute;
+			left: 10px;
+			font-weight: bolder;
+		}
+		.content > header{
+			font-size: 20px;
+			text-align: center;
+			background-color: #03C1FB;
+			color: white;
+			height: auto;
+			border-top: 1px solid #000;
+			box-shadow: 0px -0.1px 0.1px 0px #000;
+		}
+		.content > header > .toggle-icon {
+			height: 40px;
+			transform: rotate(90deg);
+			transition: all 0.3s;
+		}
+		.content > header > .toggle-icon.open{
+			transform: rotate(270deg);
+		}
+		.content > header > .list-area {
+			color: white;
+			text-align: center;
+			background-color: #03C1FB;
+			display: none;
+			box-shadow: 0px 0.1px 0px 0.1px #000;
+		}
+	</style>
+</head>
+<body>
+	<header id="header">
+		<span class="close-btn">x</span>
+		Review
+	</header>
+	<article class="content">
+		<header>
+			<div class="word-list">
+				List 1
+			</div>
+			<div class="list-area">
+				<div class="word-list">List 2</div>
+				<div class="word-list">List 3</div>
+				<div class="word-list">List 4</div>
+			</div>
+			<div class="toggle-icon">
+				>
+			</div>
+		</header>
+		<section>
+		aaa
+		</section>
+	</article>
+	<footer></footer>
+	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+	<script>
+		$(function(){
+			$(".content > header").click(function(){
+				$(".toggle-icon").toggleClass("open");
+				$(".list-area").slideToggle("normal");
+			});
+			$(".close-btn").click(function(){
+				window.location = "m_index.html";
+			});
+		});
+	</script>
+</body>
+</html>
