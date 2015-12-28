@@ -5,15 +5,72 @@
     <title>新版本wiki测试demo</title>
     <link rel="stylesheet" type="text/css" href="css/preview.css">
 </head>
-
 <body>
-    <!-- 新wiki测试 -->
-    <!-- 郑奇誉 2015.11.4 -->
     <div class="zjnw-contain" id="zjnwMain">
     </div>
 </body>
 <script src="data/preview_data.js"></script>
 <script src="lib/jquery-2.1.4.min.js"></script>
 <script src="js/preview.js"></script>
+<script>
+	var url=window.location .href;
+	var list_id = url.indexOf("=");
+	if ( list_id !== -1) {
+		list_id = url.substring(list_id+1);
+		console.log(list_id);
+	}
+	function getWordData(id) {
+		$.ajax({
+			type: "GET",
+			//timeout: 10000,
+			url: "http://172.16.3.6:3000/voc_builder/get_word",
+			//dataType: "json",
+			async: false,
+			data: {"list_id" : id },
+			success: function (data, textStatus){
+				console.log(data);
+				word_data = data.words_data;
+				console.log(word_data[0].word);
+			},
+			error: function (){
+				console.warn("获取数据失败");
+			}
+		});
+	}
+	$(function(){
+		getWordData(list_id);
+		for (var i = 1,j = 0; i <= 10 ; i++) {
+			//console.log(eval("data"+i));
+			j = Math.floor((i-1)/2);
+			currunt_word =  eval("data"+i);
+			if ( i%2 != 0) {
+				//奇数
+				//console.log(eval("data"+i).word);
+				console.log(i + " odd "+j);
+				currunt_word.word = word_data[j].word;
+				currunt_word.sentence = word_data[j].sentence;
+				currunt_word.mean_sentence = word_data[j].sentence_trans;
+				currunt_word.audio_sentence = word_data[j].sentence_audio;
+				currunt_word.picture = word_data[j].image_file;
+				currunt_word.pic_option_1 =  word_data[j].image_file;
+				currunt_word.pic_option_2 =  word_data[j].image_comparison_file[0];
+				currunt_word.pic_option_3 =  word_data[j].image_comparison_file[1];
+				currunt_word.pic_option_4 =  word_data[j].image_comparison_file[2];
+				//console.log(currunt_word.word);
+			} else {
+				//偶数
+				console.log(i + " even "+j);
+				currunt_word.word = word_data[j].word;
+				currunt_word.mean_word = word_data[j].mean_cn;
+				currunt_word.audio_word = word_data[j].word_audio_name; 
+				currunt_word.picture = word_data[j].image_file;
+				currunt_word.mean_sentence = word_data[j].sentence_trans;
+				currunt_word.mean_option_2 = word_data[j].mean_cn;
+			}
+		}
+	});
+	
+</script>
 
+</script>
 </html>

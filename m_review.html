@@ -8,6 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<style>
+		 body{
+		 	width: 375px !important;
+			margin: 0 auto;
+		 }
 		#header {
 			background-color: #000;
 			color: #FFF;
@@ -16,6 +20,7 @@
 			line-height: 40px;
 			vertical-align: middle;
 			font-size: 22px;
+			position: relative;
 		}
 		#header > .close-btn {
 			color: #FFF;
@@ -33,12 +38,12 @@
 			border-top: 1px solid #000;
 			box-shadow: 0px -0.1px 0.1px 0px #000;
 		}
-		.content > header > .toggle-icon {
-			height: 40px;
+		.content > header > .icon-area > .toggle-icon {
+			display: inline-block;
 			transform: rotate(90deg);
 			transition: all 0.3s;
 		}
-		.content > header > .toggle-icon.open{
+		.content > header > .icon-area > .toggle-icon.open{
 			transform: rotate(270deg);
 		}
 		.content > header > .list-area {
@@ -47,6 +52,17 @@
 			background-color: #03C1FB;
 			display: none;
 			box-shadow: 0px 0.1px 0px 0.1px #000;
+		}
+		.content > section {
+			background-color: #000;
+			overflow: auto;
+		}
+		.mission {
+			float: left;
+			width: 50%;
+		}
+		.mission > img {
+			width: 100%;
 		}
 	</style>
 </head>
@@ -57,34 +73,83 @@
 	</header>
 	<article class="content">
 		<header>
-			<div class="word-list">
-				List 1
+			<div class="word-list">List
 			</div>
 			<div class="list-area">
-				<div class="word-list">List 2</div>
-				<div class="word-list">List 3</div>
-				<div class="word-list">List 4</div>
+				History
+				<!-- <div class="word-list">List 2</div> -->
 			</div>
-			<div class="toggle-icon">
-				>
+			<div class="icon-area">
+				<span class="toggle-icon"> > </span>
 			</div>
 		</header>
 		<section>
-		aaa
+			<div class="mission">
+				<img src="img/mission1.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission2.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission3.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission4.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission5.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission6.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission7.png" alt="">
+			</div>
+			<div class="mission">
+				<img src="img/mission8.png" alt="">
+			</div>
 		</section>
 	</article>
 	<footer></footer>
 	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
 	<script>
 		$(function(){
-			$(".content > header").click(function(){
+			$(".icon-area").click(function(){
 				$(".toggle-icon").toggleClass("open");
 				$(".list-area").slideToggle("normal");
 			});
 			$(".close-btn").click(function(){
 				window.location = "m_index.html";
 			});
+			getListData(1);
 		});
+		function getListData(param) {
+			$.ajax({
+				type: "GET",
+				//timeout: 10000,
+				url: "http://172.16.3.6:3000/voc_builder/get_list",
+				//dataType: "json",
+				asyn: "false",
+				data: {"status": param},
+				success: function (data, textStatus){
+					console.log(data);
+					preview_list = data.list;
+					preview_id = data.list[0].id;
+					//console.log(data.list.length);
+					for (var i = 0; i < data.list.length; i++) {
+						if ( i === 0 ) {
+							console.log($(".word-list:first").html("List "+preview_list[i].id));
+						} else {
+							console.log(i);
+							$(".list-area").append('<div class="word-list">List '+preview_list[i].id+'</div>');
+						}
+					}
+				},
+				error: function (){
+					console.warn("获取数据失败");
+				}
+			});
+		}
 	</script>
 </body>
 </html>

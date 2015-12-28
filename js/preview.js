@@ -47,10 +47,27 @@ $(function(){
 	function init() {
 		skipToNext();
 	}
-
+	function addExp() {
+		$.ajax({
+			type: "GET",
+			timeout: 5000,
+			url: "http://172.16.3.6:3000/voc_builder/update_experience",
+			//dataType: "json",
+			data: {"experience" : 1},
+			async : false,
+			success: function (data, textStatus){
+				console.log(data);
+			},
+			error: function (){
+				console.warn("获取数据失败");
+			}
+		});
+	}
 	function skipToNext() {
 		if(curIndex === (flag + 1)) {
 			alert("当前已是最后一个题型！");
+			addExp();
+			window.location = "m_index.html";
 		} else {
 			var appendHtml = '';
 
@@ -134,9 +151,11 @@ $(function(){
 
 	function checkAnswer(element, testtype) {
 		var answer = "";
+		//return true;
 		if(testtype === "typenw03") {
-			answer = $(element).text().trim();
-			return answer === data.mean_word ? true : false;
+			answer = $(element).text();
+			console.log(answer + "-compare-" + data.mean_word );
+			return answer == data.mean_word ? true : false;
 		} else if(testtype === "typenw01" || testtype === "typenw02"){
 			answer = $(element).children("img").attr("src");
 			return answer === data.picture ? true : false;

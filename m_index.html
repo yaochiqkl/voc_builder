@@ -69,7 +69,7 @@
 		right: 0;*/
 		margin: 0 auto;
 		margin-top: 100px;
-		height: 40px;
+		height: 42px;
 		text-align: center;
 		vertical-align: middle;
 		line-height: 40px;
@@ -97,7 +97,6 @@
 				</span>
 				<span class="task-single">
 					<img class="task-btn" src="img/icon2.png" alt="">
-					<img class="task-f" src="img/iconf.png" alt="">
 				</span>
 				<span class="task-single">
 					<img class="task-btn" src="img/icon3.png" alt="">
@@ -137,20 +136,22 @@
 					console.log(data.user_info);
 					user_info = data.user_info;
 					$("#user-rank").html(user_info.rank);
-					$(".progress-bar").attr("style","width: "+ user_info.experience*20 +"%");
+					$(".progress-bar").attr("style","width: "+ user_info.experience%5*20 +"%");
 				},
 				error: function (){
 					console.warn("获取数据失败");
 				}
 			});
 		}
-		function getListData() {
+		function getListData(param) {
 			$.ajax({
 				type: "GET",
 				//timeout: 10000,
 				url: "http://172.16.3.6:3000/voc_builder/get_list",
 				//dataType: "json",
+				data: {"status": param},
 				success: function (data, textStatus){
+					console.log(data);
 					preview_id = data.list[0].id;
 					console.log(data.list[0].id);
 				},
@@ -166,6 +167,23 @@
 				url: "http://172.16.3.6:3000/voc_builder/get_word",
 				//dataType: "json",
 				data: {"list_id" : id },
+				async : false,
+				success: function (data, textStatus){
+					console.log(data);
+				},
+				error: function (){
+					console.warn("获取数据失败");
+				}
+			});
+		}
+		function updateWordList(id,param) {
+			$.ajax({
+				type: "GET",
+				timeout: 5000,
+				url: "http://172.16.3.6:3000/voc_builder/update_user_list_status",
+				//dataType: "json",
+				data: {"list_id" : id , "status" : param},
+				async : false,
 				success: function (data, textStatus){
 					console.log(data);
 				},
@@ -176,13 +194,15 @@
 		}
 		$(function(){
 			getUserData();
-			getListData();
+			getListData(0);
 			$("#review").click(function(){
 				window.location = "m_review.html";
 			});
 			$("#preview").click(function(){
-				getWordData(preview_id);
-				window.location = "m_preview.html?id="+preview_id;
+				//getWordData(preview_id);
+				//window.location = "m_preview.html?id="+preview_id;
+				console.log("after update!");
+				updateWordList(preview_id,1);
 			});
 		});
 	</script>
