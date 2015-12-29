@@ -63,10 +63,27 @@ $(function(){
 			}
 		});
 	}
+	function updateWordList(id,param) {
+		$.ajax({
+			type: "GET",
+			timeout: 5000,
+			url: "http://172.16.3.6:3000/voc_builder/update_user_list_status",
+			//dataType: "json",
+			data: {"list_id" : id , "status" : param},
+			async : false,
+			success: function (data, textStatus){
+				console.log(data);
+			},
+			error: function (){
+				console.warn("获取数据失败");
+			}
+		});
+	}
 	function skipToNext() {
 		if(curIndex === (flag + 1)) {
 			alert("当前已是最后一个题型！");
 			addExp();
+			updateWordList(preview_id,1);
 			window.location = "m_index.html";
 		} else {
 			var appendHtml = '';
@@ -155,10 +172,10 @@ $(function(){
 		if(testtype === "typenw03") {
 			answer = $(element).text();
 			console.log(answer + "-compare-" + data.mean_word );
-			return answer == data.mean_word ? true : false;
+			return answer.trim() == data.mean_word.trim() ? true : false;
 		} else if(testtype === "typenw01" || testtype === "typenw02"){
 			answer = $(element).children("img").attr("src");
-			return answer === data.picture ? true : false;
+			return answer.trim() === data.picture.trim() ? true : false;
 		} else {
 			return false;
 		}

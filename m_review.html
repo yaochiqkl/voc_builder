@@ -51,7 +51,7 @@
 			text-align: center;
 			background-color: #03C1FB;
 			display: none;
-			box-shadow: 0px 0.1px 0px 0.1px #000;
+			box-shadow: 0px 0.5px 0.2px 0.2px #000;
 		}
 		.content > section {
 			background-color: #000;
@@ -136,6 +136,9 @@
 					preview_list = data.list;
 					preview_id = data.list[0].id;
 					//console.log(data.list.length);
+					//排序
+					insertSort(preview_list);
+					console.log(preview_list);
 					for (var i = 0; i < data.list.length; i++) {
 						if ( i === 0 ) {
 							console.log($(".word-list:first").html("List "+preview_list[i].id));
@@ -144,11 +147,26 @@
 							$(".list-area").append('<div class="word-list">List '+preview_list[i].id+'</div>');
 						}
 					}
+					console.log(preview_list[0].update > preview_list[1].update);
 				},
 				error: function (){
 					console.warn("获取数据失败");
 				}
 			});
+		}
+		function insertSort(array){
+			var A = array;
+			var key = null;
+			var i = null;
+			for (var j = 1; j< A.length; j++) {
+				key = A[j];
+				i = j - 1;
+				while( i > -1 && A[i].update < key.update){
+					A[i+1] = A[i];
+					i--;
+				}
+				A[i+1] = key;
+			}
 		}
 	</script>
 </body>

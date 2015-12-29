@@ -58,9 +58,9 @@
 	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
 	<script>
 		exist = null;
+		target_url = "http://172.16.3.6:3000/voc_builder/";
 		$(function(){
 			$("#submit").click(function(e){
-				//e.preventDefault();
 				username = $("#username").val() ;
 				if( username ) {
 					registUser(username);
@@ -74,17 +74,15 @@
 			$.ajax({
 				type: "GET",
 				timeout: 3000,
-				//contentType:"application/json;charset=utf-8",
-				url: "http://172.16.3.6:3000/voc_builder/user_register",
+				url: target_url + "user_register",
 				async: "false",
 				data: { "name": name },
-				//dataType	: "json",
 				success: function (data, textStatus){
 					exist = data.target_vocabulary ;
 					console.log(data);
 					if ( exist ) {
-						window.location = "m_preview.html?id="+2;
-						//window.location = "m_index.html";
+						//window.location = "m_preview.html?id="+2;
+						window.location = "m_index.html";
 					} else {
 						select = $("option:selected").val();
 						$(".button").unbind("click").click(function(){
@@ -106,7 +104,8 @@
 			console.log("send voc");
 			$.ajax({
 				type: "GET",
-				url: "http://172.16.3.6:3000/voc_builder/receive_vocabulary_target",
+				url: target_url + "receive_vocabulary_target",
+				async: "false",
 				data: { "vocabulary": select*1000 , "target": 1},
 				success: function (data, textStatus){
 					console.log(data);
