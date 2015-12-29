@@ -63,10 +63,6 @@
 	}
 	footer{
 		width: 374px;
-		/*position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;*/
 		margin: 0 auto;
 		margin-top: 100px;
 		height: 42px;
@@ -124,86 +120,19 @@
 	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script>
-		function getUserData(){
-			$.ajax({
-				type: "GET",
-				//timeout: 10000,
-				//contentType:"application/json;charset=utf-8",
-				url: target_url + "get_user_info",
-				data: { "name": localStorage.vc_username },
-				dataType: "json",
-				success: function (data, textStatus){
-					console.log(data);
-					console.log(data.user_info);
-					user_info = data.user_info;
-					$("#user-rank").html(user_info.rank);
-					$(".progress-bar").attr("style","width: "+ user_info.experience%5*20 +"%");
-				},
-				error: function (){
-					console.warn("获取数据失败");
-				}
-			});
-		}
-		function getListData(param) {
-			$.ajax({
-				type: "GET",
-				//timeout: 10000,
-				url: target_url+"get_list",
-				//dataType: "json",
-				data: {"status": param},
-				success: function (data, textStatus){
-					console.log(data);
-					preview_id = data.list[0].id;
-					console.log(data.list[0].id);
-				},
-				error: function (){
-					console.warn("获取数据失败");
-				}
-			});
-		}
-		function getWordData(id) {
-			$.ajax({
-				type: "GET",
-				//timeout: 10000,
-				url:  target_url + "get_word",
-				//dataType: "json",
-				data: {"list_id" : id },
-				async : false,
-				success: function (data, textStatus){
-					console.log(data);
-				},
-				error: function (){
-					console.warn("获取数据失败");
-				}
-			});
-		}
-		function updateWordList(id,param) {
-			$.ajax({
-				type: "GET",
-				timeout: 5000,
-				url:  target_url + "update_user_list_status",
-				//dataType: "json",
-				data: {"list_id" : id , "status" : param},
-				async : false,
-				success: function (data, textStatus){
-					console.log(data);
-				},
-				error: function (){
-					console.warn("获取数据失败");
-				}
-			});
-		}
 		$(function(){
 			getUserData();
 			getListData(0);
+			//updateWordList(2,1);
 			$("#review").click(function(){
 				window.location = "m_review.html";
 			});
 			$("#preview").click(function(){
-				getWordData(preview_id);
-				//window.location = "m_preview.html?id="+preview_id;
-				//console.log("after update!");
-				//updateWordList(preview_id,1);
+				if ( typeof(preview_id) != "undefined") {
+					window.location = "m_preview.html?id="+preview_id;
+				} else {
+					alert("单词已学习完毕");
+				}
 			});
 		});
 	</script>

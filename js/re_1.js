@@ -28,6 +28,8 @@ $(function() {
 	function skipToNext() {
 		if(curIndex === (flag + 1)) {
 			alert("当前已是最后一个");
+			addExp();
+			window.location = "m_mission_fin.html?id="+list_id+"&m=2";
 			$("#toNext").hide();
 		} else {
 			var appendHtml = '',

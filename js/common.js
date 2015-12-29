@@ -27,7 +27,7 @@
             //dataType: "json",
             data: {"status": param},
             success: function (data, textStatus){
-                console.log(data);
+                console.log(data.list[0].id);
                 preview_id = data.list[0].id;
                 console.log(data.list[0].id);
             },
@@ -46,6 +46,8 @@
             async : false,
             success: function (data, textStatus){
                 console.log(data);
+                word_data = data.words_data;
+                initData();
             },
             error: function (){
                 console.warn("获取数据失败");

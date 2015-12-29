@@ -8,12 +8,71 @@
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<style>
-		 body{
+		body{
+			position: relative;
 		 	width: 375px !important;
+		 	height: 667px;
+		 	margin: 0 auto;
 		 	background-image: url(img/bg.png);
-		 	background-position: center;
+		 	background-position: top;
 		 	background-repeat: no-repeat;
+		 	background-size: 375px 667px; 
 			margin: 0 auto;
+			overflow: hidden;
+		}
+		#header > img {
+			width: 30px;
+			height: 30px;
+			margin: 10px;
+		}
+		.content {
+			margin-top: 80px;
+			text-align: center;
+			color: white;
+			font-size: 22px;
+		}
+		.content .mission > img {
+			margin-top: 50px;
+			width: 100px;
+			height: 115px;
+		}
+		.content .progress-area{
+			margin-top: 50px;
+		}
+		.content .user-level{
+			float: left;
+			font-size: 18px;
+			margin-left: 15px;
+			padding-bottom: 10px;
+			color: rgba(255, 255, 255, 0.8);
+		}
+		.content .progress-level{
+			padding-top: 5px;
+		}
+		.content .progress {
+			width: 80% !important; 
+			margin: 5px auto;
+			height: 10px ;
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+		footer > input {
+			height: 50px;
+			width: 70%;
+			border-radius: 5px;
+			background-color: #03C1FB !important;
+			position: absolute;
+			bottom: 30px;
+			left: 50%;
+			margin-left: -35%;
+		}
+		.content header{
+			font-size: 25px;
+		}
+		#fin {
+			transform: rotate(-25deg);
+			color: #73B4FF;
+			margin-left: 50px;
+			margin-top: -10px;
 		}
 	</style>
 </head>
@@ -23,13 +82,49 @@
 	</header>
 	<article class="content">
 		<header>
+			List <span id="list-num">0</span>
 		</header>
+		<aside id="fin">已完成</aside>
 		<section>
+			<div class="mission">
+				<img src="img/icon1.png">
+			</div>
+			<div class="progress-area">
+				<div class="user-level">Lv.<span id="user-rank">1</span></div>
+				<div class="progress-level">
+					<div class="progress">
+					  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+					  </div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</article>
-	<footer></footer>
+	<footer>
+		<input  class="btn btn-info" type="button" value="OK">
+	</footer>
 	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<script>
+		var url=window.location.href;
+		var url_data = url.indexOf("?");
+		if ( url_data !== -1) {
+			url_data = url.substring(url_data+1);
+			console.log(url_data);
+			//id and mission number
+			var currunt_id =  url_data.slice(url_data.indexOf("id")+3,url_data.indexOf("&")) ;
+			var currunt_ms =  url_data.slice(url_data.indexOf("m")+2);
+			console.log("id = " +  currunt_id );
+			console.log("m = " + currunt_ms );
+			$("#list-num").html(currunt_id);
+			$(".mission > img ").attr("src","img/icon"+currunt_ms+".png");
+		}
+		$(function(){
+			getUserData();
+			$("footer > input").click(function(){
+				window.location = "m_index.html";
+			});
+		});
 	</script>
 </body>
 </html>
