@@ -17,28 +17,9 @@
 <script>
 	var url=window.location.href;
 	var list_id = url.indexOf("=");
-	target_url = "http://172.16.3.6:3000/voc_builder/";
 	if ( list_id !== -1) {
 		list_id = url.substring(list_id+1);
 		console.log(list_id);
-	}
-	function getWordData(id) {
-		$.ajax({
-			type: "GET",
-			//timeout: 10000,
-			url: target_url + "get_word",
-			//dataType: "json",
-			async: false,
-			data: {"list_id" : id },
-			success: function (data, textStatus){
-				console.log(data);
-				word_data = data.words_data;
-				console.log(word_data[0].word);
-			},
-			error: function (){
-				console.warn("获取数据失败");
-			}
-		});
 	}
 
 	function addExp() {
@@ -48,22 +29,6 @@
 			url: target_url + "update_experience",
 			//dataType: "json",
 			data: {"experience" : 1},
-			async : false,
-			success: function (data, textStatus){
-				console.log(data);
-			},
-			error: function (){
-				console.warn("获取数据失败");
-			}
-		});
-	}
-	function updateWordList(id,param) {
-		$.ajax({
-			type: "GET",
-			timeout: 5000,
-			url: target_url + "update_user_list_status",
-			//dataType: "json",
-			data: {"list_id" : id , "status" : param},
 			async : false,
 			success: function (data, textStatus){
 				console.log(data);
