@@ -20,6 +20,7 @@
 </body>
 <script type="text/javascript" src="data/dongtu.js"></script>
 <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
     function getWordData(id) {
         $.ajax({
@@ -33,22 +34,23 @@
                 console.log(data);
                 word_data = data.words_data;
                 console.log(word_data[0].word);
+                for (var i = 1; i <= 5 ; i++) {
+                    var j = i -1;
+                    currunt_word =  eval("data"+i);
+                    currunt_word.word = word_data[j].word;
+                    currunt_word.sentence = word_data[j].sentence;
+                    currunt_word.mean_sentence = word_data[j].sentence_trans;
+                    currunt_word.audio_sentence = word_data[j].sentence_audio;
+                    currunt_word.picture = word_data[j].image_file;
+                    currunt_word.picture1 = word_data[j].image_file;
+                }
             },
             error: function (){
                 console.warn("获取数据失败");
             }
         });
     }
-    for (var i = 1; i <= 10 ; i++) {
-        j = Math.floor((i-1)/2);
-        currunt_word =  eval("data"+i);
-        console.log(i + " odd "+j);
-        currunt_word.word = word_data[j].word;
-        currunt_word.sentence = word_data[j].sentence;
-        currunt_word.mean_sentence = word_data[j].sentence_trans;
-        currunt_word.audio_sentence = word_data[j].sentence_audio;
-        currunt_word.picture = word_data[j].image_file;
-    }
+    getWordData(2);
 </script>
 <script type="text/javascript" src="js/pre_1.js"></script>
 

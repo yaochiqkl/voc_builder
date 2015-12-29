@@ -21,55 +21,37 @@
 		list_id = url.substring(list_id+1);
 		console.log(list_id);
 	}
-
-	function addExp() {
-		$.ajax({
-			type: "GET",
-			timeout: 5000,
-			url: target_url + "update_experience",
-			//dataType: "json",
-			data: {"experience" : 1},
-			async : false,
-			success: function (data, textStatus){
-				console.log(data);
-			},
-			error: function (){
-				console.warn("获取数据失败");
-			}
-		});
-	}
-	$(function(){
-		getWordData(list_id);
-		for (var i = 1,j = 0; i <= 10 ; i++) {
-			//console.log(eval("data"+i));
-			j = Math.floor((i-1)/2);
-			currunt_word =  eval("data"+i);
-			if ( i%2 != 0) {
-				//奇数
-				//console.log(eval("data"+i).word);
-				console.log(i + " odd "+j);
-				currunt_word.word = word_data[j].word;
-				currunt_word.sentence = word_data[j].sentence;
-				currunt_word.mean_sentence = word_data[j].sentence_trans;
-				currunt_word.audio_sentence = word_data[j].sentence_audio;
-				currunt_word.picture = word_data[j].image_file;
-				currunt_word.pic_option_1 =  word_data[j].image_file;
-				currunt_word.pic_option_2 =  word_data[j].image_comparison_file[0];
-				currunt_word.pic_option_3 =  word_data[j].image_comparison_file[1];
-				currunt_word.pic_option_4 =  word_data[j].image_comparison_file[2];
-				//console.log(currunt_word.word);
-			} else {
-				//偶数
-				console.log(i + " even "+j);
-				currunt_word.word = word_data[j].word;
-				currunt_word.mean_word = word_data[j].mean_cn;
-				currunt_word.audio_word = word_data[j].word_audio_name; 
-				currunt_word.picture = word_data[j].image_file;
-				currunt_word.mean_sentence = word_data[j].sentence_trans;
-				currunt_word.mean_option_2 = word_data[j].mean_cn;
-			}
+	
+	getWordData(list_id);
+	for (var i = 1,j = 0; i <= 10 ; i++) {
+		//console.log(eval("data"+i));
+		j = Math.floor((i-1)/2);
+		currunt_word =  eval("data"+i);
+		if ( i%2 != 0) {
+			//奇数
+			//console.log(eval("data"+i).word);
+			console.log(i + " odd "+j);
+			currunt_word.word = word_data[j].word;
+			currunt_word.sentence = word_data[j].sentence;
+			currunt_word.mean_sentence = word_data[j].sentence_trans;
+			currunt_word.audio_sentence = word_data[j].sentence_audio;
+			currunt_word.picture = word_data[j].image_file;
+			currunt_word.pic_option_1 =  word_data[j].image_file;
+			currunt_word.pic_option_2 =  word_data[j].image_comparison_file[0];
+			currunt_word.pic_option_3 =  word_data[j].image_comparison_file[1];
+			currunt_word.pic_option_4 =  word_data[j].image_comparison_file[2];
+			//console.log(currunt_word.word);
+		} else {
+			//偶数
+			console.log(i + " even "+j);
+			currunt_word.word = word_data[j].word;
+			currunt_word.mean_word = word_data[j].mean_cn;
+			currunt_word.audio_word = word_data[j].word_audio_name; 
+			currunt_word.picture = word_data[j].image_file;
+			currunt_word.mean_sentence = word_data[j].sentence_trans;
+			currunt_word.mean_option_2 = word_data[j].mean_cn;
 		}
-	});
+	}
 	
 </script>
 

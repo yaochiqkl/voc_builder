@@ -56,34 +56,6 @@ data6={
 "audio_sentence":"bigbang_mp3\/data_7j\/unit16\/heart attack.mp3",
 "picture1":null,"picture":null,"testtype":"typecheck"};
 
-data7={
-"word":"Verantwortung",
-"sentence":"Verantwortung",
-"mean_word":"\u8d23\u4efb",
-"mean_sentence":"\u8d23\u4efb",
-"audio_word":"bigbang_mp3\/data_7j\/unit16\/responsibility.mp3",
-"audio_sentence":"bigbang_mp3\/data_7j\/unit16\/responsibility.mp3",
-"picture1":"bigbang_img\/data_7j\/unit16\/23c23e1f1926eba41d549bbc7c424923.jpg",
-"picture":null,"testtype":"typewiki"};
-
-data8={
-"word":"Verantwortung",
-"sentence":"Verantwortung",
-"mean_word":"\u8d23\u4efb",
-"mean_sentence":"\u8d23\u4efb",
-"audio_word":"bigbang_mp3\/data_7j\/unit16\/responsibility.mp3",
-"audio_sentence":"bigbang_mp3\/data_7j\/unit16\/responsibility.mp3",
-"picture1":"bigbang_img\/data_7j\/unit16\/40aa507e28e7a387fb17fc455cbe7379.jpg",
-"picture":null,"testtype":"typewiki"};
-
-data9={
-"word":"Verantwortung",
-"sentence":"Verantwortung",
-"mean_word":"\u8d23\u4efb",
-"mean_sentence":"",
-"audio_word":"bigbang_mp3\/data_7j\/unit16\/responsibility.mp3",
-"audio_sentence":"bigbang_mp3\/data_7j\/unit16\/responsibility.mp3",
-"picture1":null,"picture":null,"testtype":"typecheck"};
 
 
-var flag = 9,  datatype = 'pattem';
+var flag = 5,  datatype = 'pattem';
