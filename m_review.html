@@ -114,6 +114,7 @@
 	<script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
 	<script>
 		$(function(){
+			getListData(1);
 			$(".icon-area").click(function(){
 				$(".toggle-icon").toggleClass("open");
 				$(".list-area").slideToggle("normal");
@@ -121,33 +122,32 @@
 			$(".close-btn").click(function(){
 				window.location = "m_index.html";
 			});
-			getListData(1);
+			$(".mission:first").click(function(){
+				console.log("suc");
+				console.log($(".word-list:first>span").html());
+			});
 		});
 		function getListData(param) {
 			$.ajax({
 				type: "GET",
-				//timeout: 10000,
 				url: "http://172.16.3.6:3000/voc_builder/get_list",
-				//dataType: "json",
 				asyn: "false",
 				data: {"status": param},
 				success: function (data, textStatus){
 					console.log(data);
 					preview_list = data.list;
 					preview_id = data.list[0].id;
-					//console.log(data.list.length);
 					//排序
 					insertSort(preview_list);
 					console.log(preview_list);
 					for (var i = 0; i < data.list.length; i++) {
 						if ( i === 0 ) {
-							console.log($(".word-list:first").html("List "+preview_list[i].id));
+							$(".word-list:first").html("List <span>"+preview_list[i].id + "</span>");
 						} else {
 							console.log(i);
-							$(".list-area").append('<div class="word-list">List '+preview_list[i].id+'</div>');
+							$(".list-area").append('<div class="word-list">List <span>'+preview_list[i].id+'</span></div>');
 						}
 					}
-					console.log(preview_list[0].update > preview_list[1].update);
 				},
 				error: function (){
 					console.warn("获取数据失败");

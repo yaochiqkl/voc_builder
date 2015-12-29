@@ -1,0 +1,323 @@
+/**
+ * @author Lesty
+ * @code-date 2015.10.19
+ */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f5f5f5;
+}
+
+/*入口页样式*/
+.test-title {
+	color: #666;
+	text-align: center;
+}
+
+.test-list {
+	margin: 10px auto 0px;
+	width: 80%;
+	background-color: #fff;
+}
+
+.test-list > ul {
+	margin: 0;
+	padding-left: 0;
+	text-align: center;
+	-webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.675);
+	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.675);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.675);
+}
+
+.test-list > ul > li {
+	margin-top: -1px;
+	padding-top:10px;
+	padding-left:20px;
+	padding-bottom:10px;
+	text-align: left;
+	border: 1px solid #666;
+	-webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.175);
+	-moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.175);
+	box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.175);
+	list-style-type: none;
+}
+
+.test-list > ul > li > a {
+	font-size: 14px;
+	letter-spacing: 0;
+	text-decoration: none;
+}
+
+.test-list > ul > li > a:link, .test-list > ul > li > a:visited {
+	color: #666666;
+}
+
+.test-list > ul > li > a:hover, .test-list > ul > li > a:active {
+	color: #6DC8F8;
+}
+
+/*老测试页面样式*/
+.main-contain {
+	position: relative;
+	margin: 10px auto 0;
+	padding: 10px;
+	width: 480px;
+
+	border-radius: 10px;
+	-webkit-box-shadow: 1px 1px 3px #666;
+	-moz-box-shadow: 1px 1px 3px #666;
+	box-shadow: 1px 1px 3px #666;
+	background-color: #fff;
+}
+
+.main-contain > section {
+	width: 100%;
+}
+
+.top-pic {
+	margin-bottom: 20px;
+	padding: 10px;
+	height: 320px;
+
+	text-align: center;
+	background-color: #F6F6F6;
+}
+
+.top-pic > img {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.mid-info {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.mid-info > h2 > span {
+	color: #63D0FF;
+}
+
+.mid-info >img {
+	width: 80px;
+}
+
+.to-next {
+	height: 50px;
+
+	line-height: 50px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #97DBFF;
+	background-image: -webkit-linear-gradient(top, #87CFF5, #57ACD9);
+	background-image: -moz-linear-gradient(top, #87CFF5, #57ACD9);
+	background-image: -o-linear-gradient(top, #87CFF5, #57ACD9);
+	background-image: -ms-linear-gradient(top, #87CFF5, #57ACD9);
+	background-image: linear-gradient(top, #87CFF5, #57ACD9);
+}
+
+.to-next > h2 {
+	margin: 0;
+	color: #fff;
+}
+
+/*zjnw系列样式开始*/
+.zjnw-contain {
+	position: relative;
+	margin: 100px auto 0;
+	padding: 10px;
+	width: 700px;
+	height: 400px;
+	color: #666;
+
+	border-radius: 10px;
+	-webkit-box-shadow: 1px 1px 3px #666;
+	-moz-box-shadow: 1px 1px 3px #666;
+	box-shadow: 1px 1px 3px #666;
+	background-color: #fff;
+}
+
+.typenw01,
+.typenw02,
+.typenw03 {
+	position: relative;
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+.typenw01-left,
+.typenw01-right,
+.typenw02-left,
+.typenw02-right,
+.typenw03-left,
+.typenw03-right {
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.typenw01-sentence-info,
+.typenw01-wiki,
+.typenw02-sentence-info,
+.typenw02-wiki,
+.typenw03-sentence-info,
+.typenw03-wiki {
+	position: relative;
+}
+.typenw01-sentence-info,
+.typenw02-sentence-info,
+.typenw03-sentence-info {
+	height: 45%;
+	text-align: center;
+}
+
+.typenw01-sentence-info,
+.typenw02-sentence-info,
+.typenw03-sentence-info {
+	padding-top: 50px;
+}
+
+.typenw01-sentence-info > h2 > span,
+.typenw02-sentence-info > h2 > span,
+.typenw03-sentence-info > h2 > span {
+	color: #4CC3F3;
+}
+
+.typenw01-sentence-info > em,
+.typenw02-sentence-info > em,
+.typenw03-sentence-info > em {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: transparent url(../img/trumpet.png) no-repeat center / 50px 50px;
+	cursor: pointer;
+}
+
+.typenw01-wiki,
+.typenw02-wiki,
+.typenw03-wiki {
+	position: relative;
+	display: none;
+	padding-top: 20px;
+	height: 55%;
+	border-top: 1px solid #333;
+	text-align: left;
+}
+
+.typenw01-wiki > em,
+.typenw02-wiki > em,
+.typenw03-wiki > em {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: transparent url(../img/close-alert.png) no-repeat center / 30px 30px;
+	cursor: pointer;
+}
+
+.typenw03-wiki > .wiki-left,
+.typenw03-wiki > .wiki-right {
+	position: relative;
+	float: left;
+}
+
+.typenw03-wiki > .wiki-left {
+	width: 30%;
+}
+
+.typenw03-wiki > .wiki-left > img {
+	margin-top: 20px;
+	max-width: 100%;
+}
+
+.typenw03-wiki > .wiki-right {
+	width: 70%;
+}
+
+.typenw03-wiki > .wiki-right > h3 {
+	margin-top: 17px;
+	padding-left: 5px;
+}
+
+.typenw03-wiki > .wiki-right span {
+	color: #4CC3F3;
+}
+
+.typenw01-choose-area,
+.typenw02-choose-area,
+.typenw03-choose-area {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.typenw01-choose-area > ul,
+.typenw02-choose-area > ul,
+.typenw03-choose-area > ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.typenw01-choose-area > ul > li,
+.typenw02-choose-area > ul > li {
+	position: relative;
+	padding: 10px;
+	margin: 5px 5px;
+
+	float: left;
+	width: 140px;
+	height: 130px;
+
+	border: 1px solid #f5f5f5;
+	background-color: #f5f5f5;
+	cursor: pointer;
+
+	-webkit-transition: background-color 0.4s;
+	-moz-transition: background-color 0.4s;
+	-o-transition: background-color 0.4s;
+	-ms-transition: background-color 0.4s;
+	transition: background-color 0.4s;
+}
+
+.typenw03-choose-area > ul > li {
+	position: relative;
+	padding: 10px;
+	margin: 10px 0 5px 10px;
+	float: left;
+	width: 80%;
+
+	text-align: center;
+	border: 1px solid #f5f5f5;
+	background-color: #f5f5f5;
+	cursor: pointer;
+
+	-webkit-transition: background-color 0.4s;
+	-moz-transition: background-color 0.4s;
+	-o-transition: background-color 0.4s;
+	-ms-transition: background-color 0.4s;
+	transition: background-color 0.4s;
+}
+
+.typenw01-choose-area > ul > li:hover,
+.typenw02-choose-area > ul > li:hover,
+.typenw03-choose-area > ul > li:hover {
+	border-color: #CCC;
+}
+
+.typenw01-choose-area > ul > li > img,
+.typenw02-choose-area > ul > li > img {
+	width: 140px;
+	height: 130px;
+}

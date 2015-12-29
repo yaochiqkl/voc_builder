@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/ntdemo.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="ntdemo-contain col-xs-12 col-md-4 col-md-offset-4" id="ntdemoMain">
+            <div class="start-page" id="startPage">
+                <ul>
+                    <li data-study-type="review">复习</li>
+                </ul>
+            </div>
+		</div>
+	</div>
+    <script src="data/ntdemo03u5.js"></script>
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="js/ntdemo03u5.js"></script>
+    <script type="text/javascript">
+        $("#startPage li").click();
+        console.log(resouceList);
+    </script>
+</body>
+</html>
